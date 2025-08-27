@@ -72,10 +72,15 @@ Namespace Helpers
         End Function
 
         Protected Overrides Sub OnCollectionChanged(e As NotifyCollectionChangedEventArgs)
-            UIHelper.OnUIThread(
-                Sub()
-                    MyBase.OnCollectionChanged(e)
-                End Sub)
+            Try
+                UIHelper.OnUIThread(
+                    Sub()
+                        MyBase.OnCollectionChanged(e)
+                    End Sub)
+            Catch ex As Exception
+                ' sometimes this threading will get the better of us
+                Me.OnCollectionChanged(New NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset))
+            End Try
         End Sub
 
         Protected Overrides Sub OnPropertyChanged(e As PropertyChangedEventArgs)

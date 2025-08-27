@@ -158,19 +158,23 @@ Public Class Item
                     .FirstOrDefault(Function(f) Not f.ReplacesPidl Is Nothing AndAlso f.ReplacesPidl?.Equals(pidl))?.Type
                 If customFolderType Is Nothing OrElse Not canReplaceWithCustomFolder Then
                     Dim pidlClone As Pidl = pidl.Clone() ' clone the input pidl so we don't interfere with the original
-                    Dim shellItem2 As IShellItem2
-                    shellItem2 = GetIShellItem2FromPidl(pidlClone.AbsolutePIDL, logicalParent?.ShellFolder) ' get the IShellItem2
-                    If Not preservePidl Then pidlClone.Dispose() ' dispose the clone if we're not going to keep it
-                    If Not shellItem2 Is Nothing Then
-                        ' read the attributes and decide what type of item we're dealing with
-                        Dim attr As SFGAO = SFGAO.FOLDER Or SFGAO.LINK
-                        shellItem2.GetAttributes(attr, attr)
-                        If attr.HasFlag(SFGAO.FOLDER) Then
-                            Return New Folder(shellItem2, logicalParent, doKeepAlive, doHookUpdates, threadId, If(preservePidl, pidlClone, Nothing))
-                        ElseIf attr.HasFlag(SFGAO.LINK) Then
-                            Return New Link(shellItem2, logicalParent, doKeepAlive, doHookUpdates, threadId, If(preservePidl, pidlClone, Nothing))
+                    If Not pidlClone Is Nothing Then ' we're multithreading here, so we really got to watch our backs
+                        Dim shellItem2 As IShellItem2
+                        shellItem2 = GetIShellItem2FromPidl(pidlClone.AbsolutePIDL, logicalParent?.ShellFolder) ' get the IShellItem2
+                        If Not preservePidl Then pidlClone.Dispose() ' dispose the clone if we're not going to keep it
+                        If Not shellItem2 Is Nothing Then
+                            ' read the attributes and decide what type of item we're dealing with
+                            Dim attr As SFGAO = SFGAO.FOLDER Or SFGAO.LINK
+                            shellItem2.GetAttributes(attr, attr)
+                            If attr.HasFlag(SFGAO.FOLDER) Then
+                                Return New Folder(shellItem2, logicalParent, doKeepAlive, doHookUpdates, threadId, If(preservePidl, pidlClone, Nothing))
+                            ElseIf attr.HasFlag(SFGAO.LINK) Then
+                                Return New Link(shellItem2, logicalParent, doKeepAlive, doHookUpdates, threadId, If(preservePidl, pidlClone, Nothing))
+                            Else
+                                Return New Item(shellItem2, logicalParent, doKeepAlive, doHookUpdates, threadId, If(preservePidl, pidlClone, Nothing))
+                            End If
                         Else
-                            Return New Item(shellItem2, logicalParent, doKeepAlive, doHookUpdates, threadId, If(preservePidl, pidlClone, Nothing))
+                            Return Nothing
                         End If
                     Else
                         Return Nothing
@@ -1686,7 +1690,7 @@ Public Class Item
 
             Select Case e.Event
                 Case SHCNE.UPDATEITEM, SHCNE.UPDATEDIR ' general update
-                    If Me.Pidl?.Equals(e.Item1?.Pidl) OrElse Item.ArePathsEqual(Me.FullPath?.ToLower(), e.Item1?.FullPath.ToLower()) Then ' if this is us...
+                    If Me.Pidl?.Equals(e.Item1?.Pidl) OrElse Item.ArePathsEqual(Me.FullPath?.ToLower(), e.Item1?.FullPath?.ToLower()) Then ' if this is us...
                         Shell.GlobalThreadPool.Run(
                             Sub()
                                 Me.Refresh() ' refresh
@@ -1948,7 +1952,9 @@ Public Class Item
 
     Public Overridable Function Clone() As Item
         Dim item As Item = Item.FromPidl(Me.Pidl, Nothing, _doKeepAlive)
-        If item Is Nothing Then item = Item.FromParsingName(Me.FullPath, Nothing, _doKeepAlive)
+        If item Is Nothing AndAlso Not String.IsNullOrWhiteSpace(Me.FullPath) Then
+            item = Item.FromParsingName(Me.FullPath, Nothing, _doKeepAlive)
+        End If
         Return item
     End Function
 End Class

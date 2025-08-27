@@ -188,7 +188,12 @@ Public Class Pidl
     End Function
 
     Public Function Clone() As Pidl
-        Return New Pidl(Functions.ILClone(Me.AbsolutePIDL))
+        Dim clondedPidl As IntPtr = Functions.ILClone(Me.AbsolutePIDL)
+        If Not IntPtr.Zero.Equals(clondedPidl) Then
+            Return New Pidl(clondedPidl)
+        Else
+            Return Nothing
+        End If
     End Function
 
     Public Function GetParent() As Pidl
