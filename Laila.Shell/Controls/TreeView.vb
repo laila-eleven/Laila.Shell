@@ -985,16 +985,21 @@ Namespace Controls
                             End If
                         End Sub)
                 Case "TreeSortKey"
-                    ' when the tree sort order of an item is updated, also update it's children
-                    Dim list As List(Of Item) = Nothing
-                    UIHelper.OnUIThread(
+                    UIHelper.OnUIThreadAsync(
                         Sub()
-                            list = Me.Items.Where(Function(i) i.CanShowInTree AndAlso Not TypeOf i Is DummyFolder _
-                                AndAlso Not i._logicalParent Is Nothing AndAlso i._logicalParent.Equals(folder)).ToList()
+                            Me.Items.Remove(folder)
+                            Me.Items.Add(folder)
                         End Sub)
-                    For Each item2 In list
-                        item2.NotifyOfPropertyChange("TreeSortKey")
-                    Next
+                    ' when the tree sort order of an item is updated, also update it's children
+                    'Dim list As List(Of Item) = Nothing
+                    'UIHelper.OnUIThread(
+                    '    Sub()
+                    '        list = Me.Items.Where(Function(i) i.CanShowInTree AndAlso Not TypeOf i Is DummyFolder _
+                    '            AndAlso Not i._logicalParent Is Nothing AndAlso i._logicalParent.Equals(folder)).ToList()
+                    '    End Sub)
+                    'For Each item2 In list
+                    '    item2.NotifyOfPropertyChange("TreeSortKey")
+                    'Next
             End Select
         End Sub
 

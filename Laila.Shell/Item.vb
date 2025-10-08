@@ -333,7 +333,7 @@ Public Class Item
             Else
                 Dim itemNameDisplaySortValue As String = Me.ItemNameDisplaySortValue
                 If itemNameDisplaySortValue Is Nothing Then itemNameDisplaySortValue = ""
-                Return Me.LogicalParent?.TreeSortKey & Me.TreeSortPrefix & itemNameDisplaySortValue & New String(" ", 260 - itemNameDisplaySortValue.Length)
+                Return Me.LogicalParent?.TreeSortKey.TrimEnd() & Me.TreeSortPrefix & itemNameDisplaySortValue & New String(" ", 260 - itemNameDisplaySortValue.Length)
             End If
         End Get
     End Property
@@ -386,6 +386,7 @@ Public Class Item
         Dim oldPropertiesByKey As Dictionary(Of String, [Property]) = Nothing
         Dim oldPropertiesByCanonicalName As Dictionary(Of String, [Property]) = Nothing
         Dim oldItemNameDisplaySortValue As String = Nothing
+        Dim oldTreeSortKey As String = Nothing
         Dim oldAttr As SFGAO = Me.Attributes
         Dim oldFullPath As String = Nothing
         Dim oldPidl As Pidl = Nothing
@@ -422,6 +423,7 @@ Public Class Item
 
                                                                                                 oldFullPath = _fullPath
                                                                                                 oldPidl = _pidl
+                                                                                                oldTreeSortKey = Me.TreeSortKey
                                                                                                 oldPidlAsString = oldPidl?.ToString()
 
                                                                                                 If Not newPidl Is Nothing Then
@@ -592,7 +594,9 @@ Public Class Item
             If Not Me.DisplayName?.Equals(oldDisplayName) Then
                 Me.NotifyOfPropertyChange("DisplayName")
             End If
-            Me.NotifyOfPropertyChange("DisplayName")
+            If Not Me.TreeSortKey?.Equals(oldTreeSortKey) Then
+                Me.NotifyOfPropertyChange("TreeSortKey")
+            End If
             If Not Me.ItemNameDisplaySortValue?.Equals(oldItemNameDisplaySortValue) Then
                 Me.NotifyOfPropertyChange("ItemNameDisplaySortValue")
             End If
