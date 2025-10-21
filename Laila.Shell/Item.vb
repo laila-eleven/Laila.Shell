@@ -723,9 +723,9 @@ Public Class Item
             ' if we're not disposed and we're not the desktop...
             If Not disposedValue AndAlso Not Item.ArePathsEqual(Me.FullPath, Shell.Desktop.FullPath) Then
                 If Not _parent Is Nothing Then ' we've still got a parent object
-                    SyncLock _parent._shellItemLockParent
+                    SyncLock _parent?._shellItemLockParent
                         ' if still alive...
-                        If Not _parent.disposedValue Then
+                        If Not _parent?.disposedValue Then
                             ' extend lifetime
                             Shell.RemoveFromItemsCache(_parent)
                             Shell.AddToItemsCache(_parent)

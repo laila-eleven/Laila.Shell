@@ -27,13 +27,17 @@ Public Class Clipboard
                 Functions.OleGetClipboard(dataObject)
 
                 ' check for paste by checking if it would accept a drop
-                Dim dropTarget As IDropTarget = Nothing
+                Dim dropTarget As IDropTarget = Nothing, shellFolder As IShellFolder = Nothing
+
                 Try
                     If Not folder.Parent Is Nothing Then
-                        folder.Parent.ShellFolder.GetUIObjectOf(IntPtr.Zero, 1, {If(folder.Pidl?.RelativePIDL, IntPtr.Zero)}, GetType(IDropTarget).GUID, 0, dropTarget)
+                        shellFolder = folder.Parent?.MakeIShellFolderOnCurrentThread()
                     Else
-                        ' desktop
-                        Shell.Desktop.ShellFolder.GetUIObjectOf(IntPtr.Zero, 1, {If(folder.Pidl?.RelativePIDL, IntPtr.Zero)}, GetType(IDropTarget).GUID, 0, dropTarget)
+                        shellFolder = Shell.Desktop.MakeIShellFolderOnCurrentThread()
+                    End If
+
+                    If Not shellFolder Is Nothing Then
+                        shellFolder.GetUIObjectOf(IntPtr.Zero, 1, {If(folder.Pidl?.RelativePIDL, IntPtr.Zero)}, GetType(IDropTarget).GUID, 0, dropTarget)
                     End If
 
                     If Not dropTarget Is Nothing Then
@@ -51,6 +55,10 @@ Public Class Clipboard
                     If Not dataObject Is Nothing Then
                         Marshal.ReleaseComObject(dataObject)
                         dataObject = Nothing
+                    End If
+                    If Not shellFolder Is Nothing Then
+                        Marshal.ReleaseComObject(shellFolder)
+                        shellFolder = Nothing
                     End If
                 End Try
 

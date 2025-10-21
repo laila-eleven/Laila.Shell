@@ -22,15 +22,16 @@ namespace Laila.Shell.WinRT
 
         public static bool IsPackagesUpdated()
         {
-            // get current packages
-            var packageManager = new PackageManager();
-            var packages = packageManager.FindPackagesForUser("");
             Dictionary<string, string> currentPackages = new Dictionary<string, string>();
-            foreach (var package in packages)
-                currentPackages.Add(package.Id.FullName, $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}");
 
             try
             {
+                // get current packages
+                var packageManager = new PackageManager();
+                var packages = packageManager.FindPackagesForUser("");
+                foreach (var package in packages)
+                    currentPackages.Add(package.Id.FullName, $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}");
+
                 // any new or updated packages?
                 foreach (var package in currentPackages)
                 {
