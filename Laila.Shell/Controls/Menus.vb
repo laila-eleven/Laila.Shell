@@ -39,7 +39,7 @@ Namespace Controls
 
         Public Sub New()
             Me.Colors = New StandardColors()
-            AddHandler Shell.ClipboardChanged,
+            AddHandler Clipboard.Changed,
                  Sub(s As Object, e As EventArgs)
                      Me.UpdateButtons()
                  End Sub

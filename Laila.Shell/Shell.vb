@@ -20,7 +20,6 @@ Imports Shell32
 Public Class Shell
     Private Shared _desktop As Folder
 
-    Public Shared Event ClipboardChanged As EventHandler
     Public Shared Event AccentColorChanged As EventHandler
 
     Public Shared Property PrivilegedCloudProviders As List(Of SpecialFolders) = New List(Of SpecialFolders) From {
@@ -431,7 +430,7 @@ Public Class Shell
             Case WM.SETTINGCHANGE
                 Shell.Settings.OnSettingChange()
             Case WM.DRAWCLIPBOARD
-                RaiseEvent ClipboardChanged(Nothing, New EventArgs())
+                Clipboard.OnChanged()
             Case WM.CHANGECBCHAIN
                 If wParam = _nextClipboardViewer Then
                     _nextClipboardViewer = lParam

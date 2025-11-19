@@ -10,6 +10,21 @@ Imports Laila.Shell.Interop.Items
 Imports Laila.Shell.Interop.Windows
 
 Public Class Clipboard
+    Public Shared Event Changed As EventHandler
+
+    Shared Sub New()
+
+    End Sub
+
+    Friend Shared Sub OnChanged()
+        If Not _currentlyCutItems Is Nothing Then
+            _currentlyCutItems.ToList().ForEach(Sub(i) i.IsCut = False)
+            _currentlyCutItems = Nothing
+        End If
+
+        RaiseEvent Changed(Nothing, New EventArgs())
+    End Sub
+
     Public Shared Function CanCopy(items As IEnumerable(Of Item)) As Boolean
         Return Not items Is Nothing AndAlso items.Count > 0 AndAlso items.Select(Function(i) If(TypeOf i Is ProxyLink, CType(i, ProxyLink).TargetItem, i)) _
             .All(Function(i) i._preloadedAttributes.HasFlag(SFGAO.CANCOPY))
@@ -84,9 +99,6 @@ Public Class Clipboard
                                                     items.Select(Function(i) If(TypeOf i Is ProxyLink, CType(i, ProxyLink).TargetItem, i)))
             Functions.OleSetClipboard(dataObject)
             ClipboardFormats.CFSTR_PREFERREDDROPEFFECT.SetClipboard(DROPEFFECT.DROPEFFECT_MOVE)
-            If Not _currentlyCutItems Is Nothing Then
-                _currentlyCutItems.ToList().ForEach(Sub(i) i.IsCut = False)
-            End If
             items.ToList().ForEach(Sub(i) i.IsCut = True)
             _currentlyCutItems = items.ToList()
         End Using
