@@ -12,10 +12,11 @@
     Gallery
     RecycleBin
     Recent
-    OneDrive
-    OneDriveBusiness
+    OneDrivePersonal
+    OneDriveBusiness1
     OneDriveBusiness2
     OneDriveBusinessBasic
+    OneDriveBusinessStandard
     WindowsTools
     Libraries
     ControlPanel
@@ -24,4 +25,8 @@
     UserProfile
     ProgramsAndFeatures
     User
+    InstalledUpdates
+    NetworkConnections
+    Applications
+    [Public]
 End Enum

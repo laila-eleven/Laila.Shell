@@ -628,8 +628,9 @@ Public Class Item
             End If
             Dim oldStorageProviderUIStatusIcons16Crc32 As List(Of UInteger) = _lastStorageProviderUIStatusIcons16Crc32
             Dim newStorageProviderUIStatusIcons16Crc32 As List(Of UInteger) = New List(Of UInteger)()
-            If Not Me.StorageProviderUIStatusIcons16 Is Nothing Then
-                For Each item In Me.StorageProviderUIStatusIcons16
+            Dim bitmapSources As BitmapSource() = Me.StorageProviderUIStatusIcons16?.ToArray()
+            If Not bitmapSources Is Nothing Then
+                For Each item In bitmapSources
                     newStorageProviderUIStatusIcons16Crc32.Add(Crc32.Compute(ImageHelper.GetPixelBytes(item)))
                 Next
             End If

@@ -10,10 +10,10 @@
   <Identity
     Name="Laila.Shell.SampleApp2"
     Publisher="CN=Laïla Software SampleApp2 Certificate"
-    Version="0.0.122.0" />
+    Version="0.0.123.0" />
 
   <Properties>
-    <DisplayName>Laila.Shell SampleApp 2</DisplayName>
+    <DisplayName>Dora the Explorer</DisplayName>
     <PublisherDisplayName>Laïla Software BV</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$" uap18:TrustLevel="mediumIL">
       <uap:VisualElements
-        DisplayName="Laila.Shell SampleApp 2"
+        DisplayName="Dora the Explorer"
         Description="Supercharge your Windows applications with this powerful open-source library of Windows Shell controls!"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"

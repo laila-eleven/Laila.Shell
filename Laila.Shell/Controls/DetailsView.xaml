@@ -1140,7 +1140,7 @@
                                                 <Grid Height="20">
                                                     <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
                                                             Background="{TemplateBinding Background}" SnapsToDevicePixels="True" UseLayoutRounding="True">
-                                                        <Grid>
+                                                        <Grid x:Name="Grid">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="Auto" />
                                                                 <ColumnDefinition Width="{Binding TotalColumnWidth, ElementName=ext}" />
@@ -1217,6 +1217,9 @@
                                                     </Trigger>
                                                     <DataTrigger Binding="{Binding Tag.IsCompactMode, ElementName=PART_Grid}" Value="False">
                                                         <Setter Property="Margin" Value="0,4,0,4" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsCut}" Value="True">
+                                                        <Setter Property="Opacity" TargetName="Grid" Value="0.5"/>
                                                     </DataTrigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>

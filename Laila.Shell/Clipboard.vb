@@ -76,6 +76,7 @@ Public Class Clipboard
         End Using
     End Sub
 
+    Private Shared _currentlyCutItems As IEnumerable(Of Item) = Nothing
     Public Shared Sub CutFiles(items As IEnumerable(Of Item))
         Using Shell.OverrideCursor(Cursors.Wait)
             Dim dataObject As IDataObject_PreserveSig
@@ -83,6 +84,11 @@ Public Class Clipboard
                                                     items.Select(Function(i) If(TypeOf i Is ProxyLink, CType(i, ProxyLink).TargetItem, i)))
             Functions.OleSetClipboard(dataObject)
             ClipboardFormats.CFSTR_PREFERREDDROPEFFECT.SetClipboard(DROPEFFECT.DROPEFFECT_MOVE)
+            If Not _currentlyCutItems Is Nothing Then
+                _currentlyCutItems.ToList().ForEach(Sub(i) i.IsCut = False)
+            End If
+            items.ToList().ForEach(Sub(i) i.IsCut = True)
+            _currentlyCutItems = items
         End Using
     End Sub
 

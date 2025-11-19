@@ -24,10 +24,11 @@ Public Class Shell
     Public Shared Event AccentColorChanged As EventHandler
 
     Public Shared Property PrivilegedCloudProviders As List(Of SpecialFolders) = New List(Of SpecialFolders) From {
-        SpecialFolders.OneDrive,
-        SpecialFolders.OneDriveBusiness,
+        SpecialFolders.OneDrivePersonal,
+        SpecialFolders.OneDriveBusiness1,
         SpecialFolders.OneDriveBusiness2,
-        SpecialFolders.OneDriveBusinessBasic
+        SpecialFolders.OneDriveBusinessBasic,
+        SpecialFolders.OneDriveBusinessStandard
     }
 
     Public Shared NotificationMainThread As Helpers.ThreadPool
@@ -218,25 +219,22 @@ Public Class Shell
                 Shell.AddSpecialFolder(SpecialFolders.Gallery, Folder.FromParsingName("shell:::{E88865EA-0E1C-4E20-9AA6-EDCD0212C87C}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.RecycleBin, Folder.FromParsingName("shell:::{645FF040-5081-101B-9F08-00AA002F954E}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.Recent, Folder.FromParsingName(Environment.ExpandEnvironmentVariables("%APPDATA%\Microsoft\Windows\Recent"), Nothing, False))
-                '                                 .GetItems().First(Function(i) i.FullPath.EndsWith("\Recent")))
-                Shell.AddSpecialFolder(SpecialFolders.OneDrive, Folder.FromParsingName("shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}", Nothing, False))
-                Shell.AddSpecialFolder(SpecialFolders.OneDriveBusiness, Folder.FromParsingName("shell:::{04271989-C4D2-BEC7-A521-3DF166FAB4BA}", Nothing, False))
+                Shell.AddSpecialFolder(SpecialFolders.OneDrivePersonal, Folder.FromParsingName("shell:::{018D5C66-4533-4307-9B53-224DE2ED1FE6}", Nothing, False))
+                Shell.AddSpecialFolder(SpecialFolders.OneDriveBusiness1, Folder.FromParsingName("shell:::{04271989-C4D2-BEC7-A521-3DF166FAB4BA}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.OneDriveBusiness2, Folder.FromParsingName("shell:::{04271989-C4D2-D678-C596-AE7D03458BA4}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.OneDriveBusinessBasic, Folder.FromParsingName("shell:::{04271989-C4D2-F0A2-7D2E-0556FAA01142}", Nothing, False))
+                Shell.AddSpecialFolder(SpecialFolders.OneDriveBusinessStandard, Folder.FromParsingName("shell:::{04271989-C4D2-DC2C-AD36-B31BDC1CD3ED}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.WindowsTools, Folder.FromParsingName("shell:::{D20EA4E1-3957-11D2-A40B-0C5020524153}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.Libraries, Folder.FromParsingName("shell:::{031E4825-7B94-4DC3-B131-E946B44C8DD5}", Nothing, False))
-                'addSpecialFolder("User Pinned", Folder.FromParsingName("shell:::{1F3427C8-5C10-4210-AA03-2EE45287D668}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.ControlPanel, Folder.FromParsingName("shell:::{26EE0668-A00A-44D7-9371-BEB064C98683}", Nothing))
                 Shell.AddSpecialFolder(SpecialFolders.DevicesAndPrinters, Folder.FromParsingName("shell:::{A8A91A66-3A7D-4424-8D24-04E180695C7A}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.AllTasks, Folder.FromParsingName("shell:::{ED7BA470-8E54-465E-825C-99712043E01C}", Nothing, False))
-                '_specialFolders.Add("Applications", Folder.FromParsingName("shell:::{4234d49b-0245-4df3-b780-3893943456e1}", Nothing))
-                'Shell.AddSpecialFolder("Frequent Folders", Folder.FromParsingName("shell:::{3936E9E4-D92C-4EEE-A85A-BC16D5EA0819}", Nothing, False))
+                Shell.AddSpecialFolder(SpecialFolders.Applications, Folder.FromParsingName("shell:::{4234d49b-0245-4df3-b780-3893943456e1}", Nothing))
                 Shell.AddSpecialFolder(SpecialFolders.UserProfile, Folder.FromParsingName(Environment.ExpandEnvironmentVariables("%USERPROFILE%"), Nothing, False))
-                '_specialFolders.Add("Installed Updates", Folder.FromParsingName("shell:::{d450a8a1-9568-45c7-9c0e-b4f9fb4537bd}", Nothing))
-                'addSpecialFolder("Network Connections", Folder.FromParsingName("shell:::{7007ACC7-3202-11D1-AAD2-00805FC1270E}", Nothing, False))
+                Shell.AddSpecialFolder(SpecialFolders.InstalledUpdates, Folder.FromParsingName("shell:::{d450a8a1-9568-45c7-9c0e-b4f9fb4537bd}", Nothing))
+                Shell.AddSpecialFolder(SpecialFolders.NetworkConnections, Folder.FromParsingName("shell:::{7007ACC7-3202-11D1-AAD2-00805FC1270E}", Nothing, False))
                 Shell.AddSpecialFolder(SpecialFolders.ProgramsAndFeatures, Folder.FromParsingName("shell:::{7b81be6a-ce2b-4676-a29e-eb907a5126c5}", Nothing, False))
-                '_specialFolders.Add("Public", Folder.FromParsingName("shell:::{4336a54d-038b-4685-ab02-99bb52d3fb8b}", Nothing))
-                '_specialFolders.Add("Recent Items", Folder.FromParsingName("shell:::{4564b25e-30cd-4787-82ba-39e73a750b14}", Nothing))
+                Shell.AddSpecialFolder(SpecialFolders.Public, Folder.FromParsingName("shell:::{4336a54d-038b-4685-ab02-99bb52d3fb8b}", Nothing))
 
                 Shell.IsSpecialFoldersReady.Set()
 

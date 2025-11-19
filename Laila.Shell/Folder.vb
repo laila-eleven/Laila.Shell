@@ -1573,14 +1573,14 @@ Public Class Folder
                             OrElse Item.ArePathsEqual(IO.Path.GetDirectoryName(e.Item1.FullPath), _hookFolderFullPath) Then
                             _wasActivity = True
                             SyncLock _items.Lock
-                                Dim existing As Item = _items.ToList().FirstOrDefault(Function(i) Not i Is Nothing _
-                                    AndAlso (Not i.disposedValue AndAlso Not i.Attributes.HasFlag(SFGAO.FILESYSTEM) AndAlso Not i.Pidl Is Nothing AndAlso Not e.Item1.Pidl Is Nothing AndAlso i.Pidl?.Equals(e.Item1.Pidl) _
+                                Dim existing As Item = _items.ToList().FirstOrDefault(Function(i) Not i Is Nothing AndAlso Not i.disposedValue _
+                                    AndAlso (Not i.Attributes.HasFlag(SFGAO.FILESYSTEM) AndAlso Not i.Pidl Is Nothing AndAlso Not e.Item1.Pidl Is Nothing AndAlso i.Pidl?.Equals(e.Item1.Pidl) _
                                         OrElse ((i.Attributes.HasFlag(SFGAO.FILESYSTEM) OrElse i.Pidl Is Nothing OrElse e.Item1.Pidl Is Nothing) AndAlso Item.ArePathsEqual(i.FullPath, e.Item1.FullPath))))
                                 While Not existing Is Nothing
                                     existing.Dispose()
                                     Me.OnItemsChanged()
-                                    existing = _items.ToList().FirstOrDefault(Function(i) Not i Is Nothing _
-                                        AndAlso (Not i.disposedValue AndAlso Not i.Attributes.HasFlag(SFGAO.FILESYSTEM) AndAlso Not i.Pidl Is Nothing AndAlso Not e.Item1.Pidl Is Nothing AndAlso i.Pidl?.Equals(e.Item1.Pidl) _
+                                    existing = _items.ToList().FirstOrDefault(Function(i) Not i Is Nothing AndAlso Not i.disposedValue _
+                                        AndAlso (Not i.Attributes.HasFlag(SFGAO.FILESYSTEM) AndAlso Not i.Pidl Is Nothing AndAlso Not e.Item1.Pidl Is Nothing AndAlso i.Pidl?.Equals(e.Item1.Pidl) _
                                             OrElse ((i.Attributes.HasFlag(SFGAO.FILESYSTEM) OrElse i.Pidl Is Nothing OrElse e.Item1.Pidl Is Nothing) AndAlso Item.ArePathsEqual(i.FullPath, e.Item1.FullPath))))
                                 End While
                             End SyncLock

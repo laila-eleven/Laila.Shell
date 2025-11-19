@@ -1039,7 +1039,7 @@
                                             <ControlTemplate TargetType="ListViewItem">
                                                 <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
                                                         Background="{TemplateBinding Background}" SnapsToDevicePixels="True" UseLayoutRounding="True">
-                                                    <Grid>
+                                                    <Grid x:Name="Grid">
                                                         <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" x:Name="rowPresenter" />
                                                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Visibility="Collapsed"
@@ -1082,6 +1082,9 @@
                                                     <Trigger Property="IsEnabled" Value="False">
                                                         <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding Tag.Colors.GrayForeground, ElementName=PART_Grid}"/>
                                                     </Trigger>
+                                                    <DataTrigger Binding="{Binding IsCut}" Value="True">
+                                                        <Setter Property="Opacity" TargetName="Grid" Value="0.5"/>
+                                                    </DataTrigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
                                         </Setter.Value>
