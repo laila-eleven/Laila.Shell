@@ -10,7 +10,7 @@
   <Identity
     Name="Laila.Shell.SampleApp2"
     Publisher="CN=Laïla Software SampleApp2 Certificate"
-    Version="0.0.123.0" />
+    Version="0.0.124.0" />
 
   <Properties>
     <DisplayName>Dora the Explorer</DisplayName>

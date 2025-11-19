@@ -88,7 +88,7 @@ Public Class Clipboard
                 _currentlyCutItems.ToList().ForEach(Sub(i) i.IsCut = False)
             End If
             items.ToList().ForEach(Sub(i) i.IsCut = True)
-            _currentlyCutItems = items
+            _currentlyCutItems = items.ToList()
         End Using
     End Sub
 
