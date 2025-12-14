@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Laila.Shell;component/Themes/Standard.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/AddressBar.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/ContextMenu.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/ItemsContextMenu.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/TreeView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/TabControl.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/FolderView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/DetailsView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/SmallIconsView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/NormalIconsView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/LargeIconsView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/ExtraLargeIconsView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/ListView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/TileView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/ContentView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/Previewer.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/SearchBox.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/FolderComboBox.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/HomeFolderTilesView.xaml" />
+        <ResourceDictionary Source="/Laila.Shell;component/Controls/SlidingExpander.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

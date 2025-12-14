@@ -1,0 +1,137 @@
+name: Build and Publish Laila.Shell SampleApp2
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Framework
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore NuGet Packages
+        run: nuget restore Laila.Shell.sln
+
+      - name: Extract Version from Tag
+        id: extract_version
+        shell: pwsh
+        run: |
+          git fetch --tags --force
+          $version = git for-each-ref --sort=-taggerdate --format '%(refname:short)' refs/tags | Select-Object -First 1
+          $isPrerelease = $version -match "alpha"
+          Write-Output "version=$version" | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append
+          Write-Output "prerelease=$isPrerelease" | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Build WinRT dependency
+        run: |
+          msbuild Laila.Shell.WinRT/Laila.Shell.WinRT.csproj /p:Configuration=Release /p:Platform="x64" /m
+
+      - name: Build and Pack Laila.Shell
+        run: |
+          msbuild Laila.Shell/Laila.Shell.vbproj /t:"Build;Pack" /p:Configuration=Release /p:Platform="x64" 
+
+      - name: Build Laila.Shell.SampleApp1
+        run: |
+          msbuild Laila.Shell.SampleApp1/Laila.Shell.SampleApp1.vbproj /t:"Build" /p:Configuration=Release /p:Platform="x64" 
+
+      - name: Build Laila.Shell.SampleApp2
+        run: |
+          msbuild Laila.Shell.SampleApp2/Laila.Shell.SampleApp2.vbproj /t:"Build" /p:Configuration=Release /p:Platform="x64" 
+
+      - name: Package SampleApp1
+        run: |
+          $outputDir = "./Laila.Shell.SampleApp1/bin/x64/Release/net6.0-windows7.0"
+          $zipFile = "Laila.Shell.SampleApp1-${{ steps.extract_version.outputs.version }}.zip"
+          Compress-Archive -Path "$outputDir/*" -DestinationPath "$zipFile"
+
+      - name: Package SampleApp2
+        run: |
+          $outputDir = "./Laila.Shell.SampleApp2/bin/x64/Release/net6.0-windows7.0/win-x64"
+          $zipFile = "Laila.Shell.SampleApp2-${{ steps.extract_version.outputs.version }}.zip"
+          Compress-Archive -Path "$outputDir/*" -DestinationPath "$zipFile"
+
+      - name: Find and import local .pfx certificate from project
+        id: import_cert
+        run: |
+          $pfx = Get-ChildItem -Path "**/*.pfx" -Recurse | Select-Object -First 1
+          if (-not $pfx) { throw "No .pfx file found in project." }
+
+          Write-Output "Using certificate at: $($pfx.FullName)"
+
+          $cert = Import-PfxCertificate -FilePath $pfx.FullName `
+            -CertStoreLocation Cert:\CurrentUser\My `
+            -Password (ConvertTo-SecureString -String "TEST1234" -AsPlainText -Force)
+
+          Write-Output "Cert thumbprint: $($cert.Thumbprint)"
+          "thumbprint=$($cert.Thumbprint)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Restore runtime packs
+        run: dotnet restore Laila.Shell.SampleApp2/Laila.Shell.SampleApp2.vbproj --runtime win-x64
+
+      - name: Build MSIX package for SampleApp2 (Developer Sideload)
+        run: |
+          msbuild Laila.Shell.SampleApp2.Package/Laila.Shell.SampleApp2.Package.wapproj `
+            /t:Publish `
+            /p:Configuration=Release `
+            /p:Platform=x64 `
+            /p:AppxBundle=Never `
+            /p:GenerateAppInstallerFile=False `
+            /p:BuildProjectReferences=false
+
+      - name: Package full MSIX deployment output (flattened for root zip)
+        run: |
+          $version = "${{ steps.extract_version.outputs.version }}"
+          
+          # Find the generated .msix file
+          $msix = Get-ChildItem -Path "**/AppPackages/**/*.msix" -File | Select-Object -First 1
+          if (-not $msix) { throw "No .msix file found under AppPackages." }
+
+          # Use its parent folder as the content root
+          $contentFolder = Split-Path $msix.FullName -Parent
+          Write-Output "Found deployment folder: $contentFolder"
+
+          $zipName = "Laila.Shell.SampleApp2-$version-AppX.zip"
+          Compress-Archive -Path "$contentFolder\*" -DestinationPath $zipName -Force
+
+      - name: Upload SampleApp1 Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Laila.Shell.SampleApp1-${{ steps.extract_version.outputs.version }}
+          path: ./Laila.Shell.SampleApp1/bin/x64/Release/net6.0-windows7.0/*
+
+      - name: Upload SampleApp2 Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Laila.Shell.SampleApp2-${{ steps.extract_version.outputs.version }}
+          path: ./Laila.Shell.SampleApp2/bin/x64/Release/net6.0-windows7.0/*
+
+      - name: Upload Laila.Shell NuGet Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Laila.Shell-nuget-${{ steps.extract_version.outputs.version }}
+          path: ./Laila.Shell/bin/x64/Release/*.nupkg
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.extract_version.outputs.version }}
+          name: Release ${{ steps.extract_version.outputs.version }}
+          draft: false
+          prerelease: ${{ steps.extract_version.outputs.prerelease }}
+          artifacts: Laila.Shell.SampleApp1-${{ steps.extract_version.outputs.version }}.zip,Laila.Shell.SampleApp2-${{ steps.extract_version.outputs.version }}.zip,Laila.Shell.SampleApp2-${{ steps.extract_version.outputs.version }}-AppX.zip,./Laila.Shell/bin/x64/Release/*.nupkg
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Publish NuGet package to nuget.org
+        run: |
+          nuget push **/bin/x64/Release/*.nupkg `
+            -ApiKey ${{ secrets.PUSH_LAILA_SHELL }} `
+            -Source https://api.nuget.org/v3/index.json `
+            -SkipDuplicate

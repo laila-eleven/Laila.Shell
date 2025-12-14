@@ -1,0 +1,252 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Laila.Shell</RootNamespace>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
+    <RootNamespace>Laila.Shell</RootNamespace>
+	<UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+	<EnableComHosting>true</EnableComHosting>
+	<Platforms>x64</Platforms>
+	<EnableRegFreeCom>true</EnableRegFreeCom>
+	<ApplicationManifest>Laila.Shell.manifest</ApplicationManifest>
+	<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+	<Title>Laila.Shell</Title>
+	<Version>0.0.119-alpha</Version>
+	<Authors>laila_eleven</Authors>
+	<Description>A complete set of Windows Shell Controls for .NET6-Windows7 and up.</Description>
+	<Copyright>Copyright © 2024-2025 by Laïla Eleven</Copyright>
+	<PackageProjectUrl>https://github.com/laila-eleven/Laila.Shell</PackageProjectUrl>
+	<PackageReleaseNotes>This is a work in progress (alpha). Hang on.
+Basic functionality has been tested on Windows 7, 8.1, 10 and 11.</PackageReleaseNotes>
+	<RepositoryUrl>https://github.com/laila-eleven/Laila.Shell.git</RepositoryUrl>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <RemoveIntegerChecks>False</RemoveIntegerChecks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Remove="Laila.Shell.manifest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\3dots16.png" />
+    <None Remove="Images\add16.png" />
+    <None Remove="Images\arrow_left16.png" />
+    <None Remove="Images\arrow_right16.png" />
+    <None Remove="Images\arrow_up16.png" />
+    <None Remove="Images\check16.png" />
+    <None Remove="Images\chevron16.png" />
+    <None Remove="Images\cloud16.png" />
+    <None Remove="Images\cloud32.png" />
+    <None Remove="Images\cloud_download16.png" />
+    <None Remove="Images\cloud_download32.png" />
+    <None Remove="Images\compactmode16.png" />
+    <None Remove="Images\content16.png" />
+    <None Remove="Images\copy16.png" />
+    <None Remove="Images\cut16.png" />
+    <None Remove="Images\delete16.png" />
+    <None Remove="Images\details16.png" />
+    <None Remove="Images\dropdown_arrow.png" />
+    <None Remove="Images\error16.png" />
+    <None Remove="Images\error32.png" />
+    <None Remove="Images\extralargeicons16.png" />
+    <None Remove="Images\eye16.png" />
+    <None Remove="Images\filecheck16.png" />
+    <None Remove="Images\fileext16.png" />
+    <None Remove="Images\info16.png" />
+    <None Remove="Images\largeicons16.png" />
+    <None Remove="Images\list16.png" />
+    <None Remove="Images\monitor16.png" />
+    <None Remove="Images\more_options16.png" />
+    <None Remove="Images\more_options32.png" />
+    <None Remove="Images\normalicons16.png" />
+    <None Remove="Images\paste16.png" />
+    <None Remove="Images\pin16.png" />
+    <None Remove="Images\preview16.png" />
+    <None Remove="Images\refresh16.png" />
+    <None Remove="Images\rename16.png" />
+    <None Remove="Images\search16.png" />
+    <None Remove="Images\share16.png" />
+    <None Remove="Images\smallicons16.png" />
+    <None Remove="Images\sort16.png" />
+    <None Remove="Images\sortasc.png" />
+    <None Remove="Images\sortdesc.png" />
+    <None Remove="Images\tiles16.png" />
+    <None Remove="Images\view16.png" />
+    <None Remove="Images\Windows.CompressTo16.png" />
+    <None Remove="Images\Windows.CompressTo32.png" />
+    <None Remove="Images\Windows.Install16.png" />
+    <None Remove="Images\Windows.Install32.png" />
+    <None Remove="Interop\7z\7z.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="Shell32">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>50a7e9b0-70ef-11d1-b75a-00a0c90564fe</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SHDocVw">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>1</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>eab22ac0-30c1-11cf-a7eb-0000c05bae0b</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Laila.BalloonTip" Version="1.0.4" />
+    <PackageReference Include="LiteDB" Version="5.0.21" />
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\3dots16.png" />
+    <Resource Include="Images\add16.png" />
+    <Resource Include="Images\arrow_left16.png" />
+    <Resource Include="Images\arrow_right16.png" />
+    <Resource Include="Images\arrow_up16.png" />
+    <Resource Include="Images\check16.png" />
+    <Resource Include="Images\chevron16.png" />
+    <Resource Include="Images\cloud16.png" />
+    <Resource Include="Images\cloud32.png" />
+    <Resource Include="Images\cloud_download16.png" />
+    <Resource Include="Images\cloud_download32.png" />
+    <Resource Include="Images\collapse16.png" />
+    <Resource Include="Images\compactmode16.png" />
+    <Resource Include="Images\content16.png" />
+    <Resource Include="Images\copy16.png" />
+    <Resource Include="Images\cut16.png" />
+    <Resource Include="Images\delete16.png" />
+    <Resource Include="Images\details16.png" />
+    <Resource Include="Images\dropdown_arrow.png" />
+    <Resource Include="Images\error16.png" />
+    <Resource Include="Images\error32.png" />
+    <Resource Include="Images\expand16.png" />
+    <Resource Include="Images\extralargeicons16.png" />
+    <Resource Include="Images\eye16.png" />
+    <Resource Include="Images\filecheck16.png" />
+    <Resource Include="Images\fileext16.png" />
+    <Resource Include="Images\info16.png" />
+    <Resource Include="Images\largeicons16.png" />
+    <Resource Include="Images\list16.png" />
+    <Resource Include="Images\monitor16.png" />
+    <Resource Include="Images\more_options16.png" />
+    <Resource Include="Images\more_options32.png" />
+    <Resource Include="Images\normalicons16.png" />
+    <Resource Include="Images\paste16.png" />
+    <Resource Include="Images\pin16.png" />
+    <Resource Include="Images\preview16.png" />
+    <Resource Include="Images\refresh16.png" />
+    <Resource Include="Images\rename16.png" />
+    <Resource Include="Images\search16.png" />
+    <Resource Include="Images\share16.png" />
+    <Resource Include="Images\smallicons16.png" />
+    <Resource Include="Images\sort16.png" />
+    <Resource Include="Images\sortasc.png" />
+    <Resource Include="Images\sortdesc.png" />
+    <Resource Include="Images\tiles16.png" />
+    <Resource Include="Images\view16.png" />
+    <Resource Include="Images\Windows.CompressTo16.png" />
+    <Resource Include="Images\Windows.CompressTo32.png" />
+    <Resource Include="Images\Windows.Install16.png" />
+    <Resource Include="Images\Windows.Install32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="My Project\Resources.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Laila.Shell.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="7z.dll">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x64/native/</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\Laila.Shell.WinRT\bin\$(Platform)\$(Configuration)\net6.0-windows10.0.22621.0\win-x64\Laila.Shell.WinRT.dll">
+			<Pack>true</Pack>
+			<PackagePath>lib\net6.0-windows7.0/</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="$(OutputPath)Laila.Shell.comhost.dll">
+			<Pack>true</Pack>
+			<PackagePath>lib\net6.0-windows7.0/</PackagePath>
+		</None>
+		<None Include="$(OutputPath)Laila.Shell.manifest">
+			<Pack>true</Pack>
+			<PackagePath>lib\net6.0-windows7.0/</PackagePath>
+		</None>
+		<None Include="$(OutputPath)Laila.Shell.X.manifest">
+			<Pack>true</Pack>
+			<PackagePath>lib\net6.0-windows7.0/</PackagePath>
+		</None>
+		<None Include="..\Laila.Shell.WinRT\bin\$(Platform)\$(Configuration)\net6.0-windows10.0.22621.0\win-x64\Microsoft.Windows.SDK.NET.dll">
+			<Pack>true</Pack>
+			<PackagePath>lib\net6.0-windows7.0/</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="..\Laila.Shell.WinRT\bin\$(Platform)\$(Configuration)\net6.0-windows10.0.22621.0\win-x64\WinRT.Runtime.dll">
+			<Pack>true</Pack>
+			<PackagePath>lib\net6.0-windows7.0/</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Laila.Shell.WinRT.Interface\Laila.Shell.WinRT.Interface.csproj" />
+	  <ProjectReference Include="..\Laila.VirtualizingWrapPanel\Laila.VirtualizingWrapPanel.csproj" />
+	</ItemGroup>
+	
+	<Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+		<ItemGroup>
+			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+		</ItemGroup>
+	</Target>
+</Project>

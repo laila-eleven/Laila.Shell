@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddressBar_Loading" xml:space="preserve">
+    <value>Laden...</value>
+  </data>
+  <data name="FolderView_StatusText_MultipleItemsSelected" xml:space="preserve">
+    <value>{0} items geselecteerd</value>
+  </data>
+  <data name="FolderView_StatusText_MultipleTotalItems" xml:space="preserve">
+    <value> {0} items</value>
+  </data>
+  <data name="FolderView_StatusText_OneItemSelected" xml:space="preserve">
+    <value>1 item geselecteerd</value>
+  </data>
+  <data name="FolderView_StatusText_OneTotalItem" xml:space="preserve">
+    <value>1 item</value>
+  </data>
+  <data name="FolderView_ThisFolderIsEmpty" xml:space="preserve">
+    <value>Deze map is leeg.</value>
+  </data>
+  <data name="Folder_Home_CategoryPropertyDisplayName" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="Folder_Home_DisplayName" xml:space="preserve">
+    <value>Thuis</value>
+  </data>
+  <data name="Folder_Home_DragDrop_PinTo" xml:space="preserve">
+    <value>Vastmaken aan %1</value>
+  </data>
+  <data name="Folder_Home_LastAccessedPropertyDisplayName" xml:space="preserve">
+    <value>Laatst geopend</value>
+  </data>
+  <data name="Folder_Home_QuickLaunch" xml:space="preserve">
+    <value>Snelle start</value>
+  </data>
+  <data name="Folder_Home_RecentFiles" xml:space="preserve">
+    <value>Recente bestanden</value>
+  </data>
+  <data name="GridViewExtBehavior_AllColumnsMustHaveUniqueNames" xml:space="preserve">
+    <value>Alle kolommen moeten unieke namen hebben.</value>
+  </data>
+  <data name="GridViewExtBehavior_EachColumnMustHaveAName" xml:space="preserve">
+    <value>Elke kolom moet een naam hebben.</value>
+  </data>
+  <data name="GridViewExtBehavior_GroupByThisColumn" xml:space="preserve">
+    <value>Groeperen op deze kolom</value>
+  </data>
+  <data name="Menus_TheFollowingCharactersCanAppearInFileNames" xml:space="preserve">
+    <value>Alleen de volgende tekens mogen in bestandsnamen staan:</value>
+  </data>
+  <data name="Menus_TheFollowingCharactersCannotAppearInFileNames" xml:space="preserve">
+    <value>De volgende tekens mogen niet in bestandsnamen staan:</value>
+  </data>
+  <data name="Menu_CheckboxesForItems" xml:space="preserve">
+    <value>Selectievakjes voor items</value>
+  </data>
+  <data name="Menu_Collapse" xml:space="preserve">
+    <value>Samenvouwen</value>
+  </data>
+  <data name="Menu_CollapseAllGroups" xml:space="preserve">
+    <value>Alle groepen samenvouwen</value>
+  </data>
+  <data name="Menu_CompactMode" xml:space="preserve">
+    <value>Compacte modus</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="Menu_Cut" xml:space="preserve">
+    <value>Knippen</value>
+  </data>
+  <data name="Menu_Delete" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Menu_Expand" xml:space="preserve">
+    <value>Uitvouwen</value>
+  </data>
+  <data name="Menu_ExpandAllGroups" xml:space="preserve">
+    <value>Alle groepen uitvouwen</value>
+  </data>
+  <data name="Menu_FilenameExtensions" xml:space="preserve">
+    <value>Bestandsextensies</value>
+  </data>
+  <data name="Menu_GroupBy" xml:space="preserve">
+    <value>Groeperen op</value>
+  </data>
+  <data name="Menu_GroupByNone" xml:space="preserve">
+    <value>(Geen)</value>
+  </data>
+  <data name="Menu_HiddenItems" xml:space="preserve">
+    <value>Verborgen items</value>
+  </data>
+  <data name="Menu_OpenContaining" xml:space="preserve">
+    <value>Bestandslocatie openen</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>Plakken</value>
+  </data>
+  <data name="Menu_PinItem" xml:space="preserve">
+    <value>Item vastmaken</value>
+  </data>
+  <data name="Menu_Rename" xml:space="preserve">
+    <value>Hernoemen</value>
+  </data>
+  <data name="Menu_ShowMoreOptions" xml:space="preserve">
+    <value>Meer opties weergeven...</value>
+  </data>
+  <data name="Menu_Sort" xml:space="preserve">
+    <value>Sorteren</value>
+  </data>
+  <data name="Menu_SortAscending" xml:space="preserve">
+    <value>Oplopend</value>
+  </data>
+  <data name="Menu_SortDescending" xml:space="preserve">
+    <value>Aflopend</value>
+  </data>
+  <data name="Menu_SortMore" xml:space="preserve">
+    <value>Meer</value>
+  </data>
+  <data name="Menu_UnpinItem" xml:space="preserve">
+    <value>Item losmaken</value>
+  </data>
+  <data name="Menu_View" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="Navigation_BackText" xml:space="preserve">
+    <value>Terug naar {0}</value>
+  </data>
+  <data name="Navigation_ForwardText" xml:space="preserve">
+    <value>Verder naar {0}</value>
+  </data>
+  <data name="Navigation_RefreshText" xml:space="preserve">
+    <value>Vernieuwen van {0}</value>
+  </data>
+  <data name="Navigation_UpText" xml:space="preserve">
+    <value>Omhoog naar {0}</value>
+  </data>
+  <data name="Previewer_APreviewCannotBeDisplayedForThisItem" xml:space="preserve">
+    <value>Voor dit item kan geen voorbeeld worden weergegeven ({0}).</value>
+  </data>
+  <data name="Previewer_PreviewIsNotAvailable" xml:space="preserve">
+    <value>Voorbeeldweergave is niet beschikbaar.</value>
+  </data>
+  <data name="Previewer_SelectTheFileForWhichYouWantToDisplayAPreview" xml:space="preserve">
+    <value>Selecteer het bestand waarvoor je een voorbeeld wilt zien.</value>
+  </data>
+  <data name="Property_Date_EarlierThisMonth" xml:space="preserve">
+    <value>Eerder deze maand</value>
+  </data>
+  <data name="Property_Date_EarlierThisWeek" xml:space="preserve">
+    <value>Eerder deze week</value>
+  </data>
+  <data name="Property_Date_LastMonth" xml:space="preserve">
+    <value>Vorige maand</value>
+  </data>
+  <data name="Property_Date_LastWeek" xml:space="preserve">
+    <value>Vorige week</value>
+  </data>
+  <data name="Property_Date_LongAgo" xml:space="preserve">
+    <value>Lang geleden</value>
+  </data>
+  <data name="Property_Date_Today" xml:space="preserve">
+    <value>Vandaag</value>
+  </data>
+  <data name="Property_Date_Yesterday" xml:space="preserve">
+    <value>Gisteren</value>
+  </data>
+  <data name="Property_Size_Gigantic" xml:space="preserve">
+    <value>Gigantisch (&gt; 4 GB)</value>
+  </data>
+  <data name="Property_Size_Large" xml:space="preserve">
+    <value>Groot (128 MB - 1 GB)</value>
+  </data>
+  <data name="Property_Size_Normal" xml:space="preserve">
+    <value>Normaal (1 - 128 MB)</value>
+  </data>
+  <data name="Property_Size_Small" xml:space="preserve">
+    <value>Klein (16 KB - 1 MB)</value>
+  </data>
+  <data name="Property_Size_Unknown" xml:space="preserve">
+    <value>Onbekend</value>
+  </data>
+  <data name="Property_Size_VeryLarge" xml:space="preserve">
+    <value>Zeer groot (1 - 4 GB)</value>
+  </data>
+  <data name="Property_Size_VerySmall" xml:space="preserve">
+    <value>Zeer klein (0 - 16 KB)</value>
+  </data>
+  <data name="SearchBox_SearchIn" xml:space="preserve">
+    <value>Zoeken in</value>
+  </data>
+  <data name="SearchFolder_SearchResultsFor" xml:space="preserve">
+    <value>Zoekresultaten voor {0}</value>
+  </data>
+  <data name="ToolBar_CopyButtonToolTip" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="ToolBar_CutButtonToolTip" xml:space="preserve">
+    <value>Knippen</value>
+  </data>
+  <data name="ToolBar_DeleteButtonToolTip" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="ToolBar_NewMenuButton" xml:space="preserve">
+    <value>Nieuw</value>
+  </data>
+  <data name="ToolBar_NewMenuButtonToolTip" xml:space="preserve">
+    <value>Maak een nieuw item in de huidige locatie.</value>
+  </data>
+  <data name="ToolBar_PasteButtonToolTip" xml:space="preserve">
+    <value>Plakken</value>
+  </data>
+  <data name="ToolBar_PreviewButton" xml:space="preserve">
+    <value>Voorbeeld</value>
+  </data>
+  <data name="ToolBar_RefreshButton" xml:space="preserve">
+    <value>Vernieuwen</value>
+  </data>
+  <data name="ToolBar_RenameButtonToolTip" xml:space="preserve">
+    <value>Hernoemen</value>
+  </data>
+  <data name="ToolBar_ShareButtonToolTip" xml:space="preserve">
+    <value>Delen</value>
+  </data>
+  <data name="ToolBar_SortMenuButton" xml:space="preserve">
+    <value>Sorteren</value>
+  </data>
+  <data name="ToolBar_SortMenuButtonToolTip" xml:space="preserve">
+    <value>Opties voor sorteren en groeperen.</value>
+  </data>
+  <data name="ToolBar_ViewMenuButton" xml:space="preserve">
+    <value>Weergave</value>
+  </data>
+  <data name="ToolBar_ViewMenuButtonToolTip" xml:space="preserve">
+    <value>Indeling en weergaveopties.</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Onbekend</value>
+  </data>
+  <data name="View_Content" xml:space="preserve">
+    <value>Inhoud</value>
+  </data>
+  <data name="View_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="View_ExtraLargeIcons" xml:space="preserve">
+    <value>Extra grote pictogrammen</value>
+  </data>
+  <data name="View_LargeIcons" xml:space="preserve">
+    <value>Grote pictogrammen</value>
+  </data>
+  <data name="View_List" xml:space="preserve">
+    <value>Lijst</value>
+  </data>
+  <data name="View_NormalIcons" xml:space="preserve">
+    <value>Normale pictogrammen</value>
+  </data>
+  <data name="View_SmallIcons" xml:space="preserve">
+    <value>Kleine pictogrammen</value>
+  </data>
+  <data name="View_Tiles" xml:space="preserve">
+    <value>Tegels</value>
+  </data>
+</root>
